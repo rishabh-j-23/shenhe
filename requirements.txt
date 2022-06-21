@@ -1,0 +1,4 @@
+discord.py
+discord
+flask
+youtude-dl

@@ -1,0 +1,14 @@
+venv
+poetry.lock
+replit.nix
+pyproject.toml
+https:
+__pycache__
+
+guide.py
+discordMessages.txt
+old_commands.txt
+
+guide.py
+
+db.py
