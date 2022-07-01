@@ -17,8 +17,9 @@ logger.addHandler(handler)
 bot = commands.Bot(command_prefix = "!!")
 
 cogs = ["cogs.genshin_commands.Genshin",
-        "cogs.genshin_commands.yelan.Yelan"
-       , "cogs.miscellaneous.Miscellaneous"]
+        "cogs.miscellaneous.Miscellaneous"]
+
+spareCogs = [ "cogs.genshin_commands.yelan.Yelan"]
 
 @bot.event
 #SET PRESENSE AND ACTIVITY
