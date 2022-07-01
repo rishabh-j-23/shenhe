@@ -65,5 +65,10 @@ class Genshin(commands.Cog):
   async def char_mats(self, ctx):
     await ctx.send("https://media.discordapp.net/attachments/943505502682382406/964883155448393798/image0-4.png")
 
+  #Sends Genshin Character guides
+  @commands.command()
+  async def guide(self, ctx, char):
+    await ctx.send(f"https://keqingmains.com/{char}/")
+
 def setup(bot):
   bot.add_cog(Genshin(bot))
