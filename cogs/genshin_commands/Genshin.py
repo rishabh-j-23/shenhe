@@ -66,7 +66,7 @@ class Genshin(commands.Cog):
     await ctx.send("https://media.discordapp.net/attachments/943505502682382406/964883155448393798/image0-4.png")
 
   #Sends Genshin Character guides
-  @commands.command()
+  @commands.command(brief = "Genshin Character Guides")
   async def guide(self, ctx, char):
     await ctx.send(f"https://keqingmains.com/{char}/")
 
