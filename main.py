@@ -14,10 +14,11 @@ handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(me
 logger.addHandler(handler)
 
 #BOT PREFIX
-bot = commands.Bot(command_prefix = "!!")
-
+bot = commands.Bot(command_prefix = "!!",
+                  intents = discord.Intents.default())
 cogs = ["cogs.genshin_commands.Genshin",
-        "cogs.miscellaneous.Miscellaneous"]
+        "cogs.miscellaneous.Miscellaneous",
+        "cogs.genshin_commands.status"]
 
 spareCogs = [ "cogs.genshin_commands.yelan.Yelan"]
 
