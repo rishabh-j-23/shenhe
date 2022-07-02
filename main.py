@@ -39,8 +39,8 @@ async def on_ready():
     except Exception as e:
       print(e)
       
-# @bot.event
-# async def on_command_error(ctx, error):
-#    await ctx.send("Not a Valid Command.")
+@bot.event
+async def on_command_error(ctx, error):
+   await ctx.send("Not a Valid Command.")
 
 bot.run(os.environ['TOKEN'])
