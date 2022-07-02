@@ -74,7 +74,7 @@ class Genshin(commands.Cog):
   @commands.command(brief= "Versions Summary")
   async def summary(self, ctx, version: str):
     if (version == "2.8"):
-      embed = discord.Embed(title = "v2.8 Summary", description = version_summary.v2_8())
+      embed = discord.Embed(title = "v2.8 Summary", description = version_summary.v2_8(), color=0x06E5F5)
       embed.set_thumbnail(url = "https://media.discordapp.net/attachments/943505425742045267/992808669026721832/unknown.png?width=603&height=603")
       embed.set_footer(text=ctx.author.display_name, icon_url=ctx.author.avatar_url)
       await ctx.send(embed=embed)
