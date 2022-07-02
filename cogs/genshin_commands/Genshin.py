@@ -3,6 +3,7 @@ from discord.ext import commands
 
 from res.art import WaifuArt
 from res.builds import builds, artifacts
+from res.version_summary import version_summary
 
 class Genshin(commands.Cog):
 
@@ -69,6 +70,14 @@ class Genshin(commands.Cog):
   @commands.command(brief = "Genshin Character Guides")
   async def guide(self, ctx, char):
     await ctx.send(f"https://keqingmains.com/{char}/")
+
+  @commands.command(brief= "Versions Summary")
+  async def summary(self, ctx, version: str):
+    if (version == "2.8"):
+      embed = discord.Embed(title = "v2.8 Summary", description = version_summary.v2_8())
+      embed.set_footer(text=ctx.author.display_name, icon_url=ctx.author.avatar_url)
+      await ctx.send(embed=embed)
+      # await ctx.send(version_summary.v2_8())
 
 def setup(bot):
   bot.add_cog(Genshin(bot))
