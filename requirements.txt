@@ -3,3 +3,4 @@ discord
 flask
 PyNaCl
 youtube_dl
+Ffmpeg
