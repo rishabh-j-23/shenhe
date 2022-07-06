@@ -18,9 +18,10 @@ bot = commands.Bot(command_prefix = "!!",
                   intents = discord.Intents.default())
 cogs = ["cogs.genshin_commands.Genshin",
         "cogs.miscellaneous.Miscellaneous",
-        "cogs.genshin_commands.status"]
+        "cogs.music.music"]
 
-spareCogs = [ "cogs.genshin_commands.yelan.Yelan"]
+spareCogs = [ "cogs.genshin_commands.yelan.Yelan",
+        "cogs.genshin_commands.status"]
 
 @bot.event
 #SET PRESENSE AND ACTIVITY
@@ -40,8 +41,9 @@ async def on_ready():
     except Exception as e:
       print(e)
       
-@bot.event
-async def on_command_error(ctx, error):
-   await ctx.send("Not a Valid Command.")
+# @bot.event
+# async def on_command_error(ctx, error):
+#    await ctx.send("Not a Valid Command
+
 
 bot.run(os.environ['TOKEN'])
