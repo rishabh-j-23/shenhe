@@ -2,5 +2,4 @@ discord.py
 discord
 flask
 PyNaCl
-ast
 youtube_dl
