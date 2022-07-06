@@ -18,7 +18,7 @@ bot = commands.Bot(command_prefix = "!!",
                   intents = discord.Intents.default())
 cogs = ["cogs.genshin_commands.Genshin",
         "cogs.miscellaneous.Miscellaneous",
-        "cogs.music.music"]
+        "cogs.music.Music"]
 
 spareCogs = [ "cogs.genshin_commands.yelan.Yelan",
         "cogs.genshin_commands.status"]

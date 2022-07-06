@@ -78,7 +78,6 @@ class Genshin(commands.Cog):
       embed.set_thumbnail(url = "https://media.discordapp.net/attachments/943505425742045267/992808669026721832/unknown.png?width=603&height=603")
       embed.set_footer(text=ctx.author.display_name, icon_url=ctx.author.avatar_url)
       await ctx.send(embed=embed)
-      # await ctx.send(version_summary.v2_8())
 
 def setup(bot):
   bot.add_cog(Genshin(bot))

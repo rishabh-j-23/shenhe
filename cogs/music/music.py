@@ -4,7 +4,7 @@ from discord.ext import commands
 
 from youtube_dl import YoutubeDL
 
-class music(commands.Cog):
+class Music(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
     
@@ -131,11 +131,11 @@ class music(commands.Cog):
         self.music_queue = []
         await ctx.send("Music queue cleared")
 
-    @commands.command(name="leave", aliases=["disconnect", "l", "d"], help="Kick the bot from VC")
+    @commands.command(name="leave", aliases=["disconnect", "l", "dc"], help="Removes the bot from VC")
     async def dc(self, ctx):
         self.is_playing = False
         self.is_paused = False
         await self.vc.disconnect()
 
 def setup(bot):
-  bot.add_cog(music(bot))
+  bot.add_cog(Music(bot))
