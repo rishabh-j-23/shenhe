@@ -79,5 +79,12 @@ class Genshin(commands.Cog):
       embed.set_footer(text=ctx.author.display_name, icon_url=ctx.author.avatar_url)
       await ctx.send(embed=embed)
 
+  @commands.command(brief = "Genshin Char Infographics")
+  async def info(self, ctx, name: str):
+    if name == 'yoimiya':
+      await ctx.send('https://media.discordapp.net/attachments/943505502682382406/994489866505179196/yF233Nb.png')
+    
+    
+
 def setup(bot):
   bot.add_cog(Genshin(bot))
