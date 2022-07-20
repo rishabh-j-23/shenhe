@@ -1,29 +1,21 @@
 import os
-import math
-import random
-import logging
 import discord
 from discord.ext import commands, tasks
-from flask import Flask
+from res.logger import logger
 
-#KEEPSEYE ON WARNING LEVEL LOGS
-logger = logging.getLogger('discord')
-logger.setLevel(logging.WARNING)
-handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')
-handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
-logger.addHandler(handler)
+logger.run()
 
 #BOT PREFIX
 bot = commands.Bot(command_prefix = "!!",
                   intents = discord.Intents.default())
-cogs = ["cogs.genshin_commands.Genshin",
+cogs = ["cogs.genshin.Genshin",
         "cogs.miscellaneous.Miscellaneous",
-        "cogs.music.Music"]
+        "cogs.music.Music",
+        "cogs.genshin.EnkaShinShin"]
 
-spareCogs = [ "cogs.genshin_commands.yelan.Yelan",
-        "cogs.genshin_commands.status"]
+spareCogs = ["cogs.genshin.yelan.Yelan", 
+             "cogs.genshin.status"]
 
-@bot.event
 #SET PRESENSE AND ACTIVITY
 @bot.event
 async def on_connect():
@@ -43,7 +35,7 @@ async def on_ready():
       
 # @bot.event
 # async def on_command_error(ctx, error):
-#    await ctx.send("Not a Valid Command
+#    await ctx.send("Not a Valid Command")
 
 
 bot.run(os.environ['TOKEN'])

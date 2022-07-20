@@ -2,6 +2,5 @@ venv
 poetry.lock
 replit.nix
 pyproject.toml
-https:
-__pycache__
 .config
+test.py
