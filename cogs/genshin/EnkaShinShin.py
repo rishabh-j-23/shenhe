@@ -39,6 +39,6 @@ class EnkaShinShin(commands.Cog):
             await ctx.send(f'\t{artifact.main_stat.prop}:{artifact.main_stat.value}')
             for sub_stats in artifact.sub_stats:
                 await ctx.send(f'\t\t{sub_stats.prop}:{sub_stats.value}')
-              
+           
 def setup(bot):
   bot.add_cog(EnkaShinShin(bot))
