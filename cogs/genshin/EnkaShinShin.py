@@ -21,32 +21,11 @@ class EnkaShinShin(commands.Cog):
         await ctx.send(embed=embed)
 
         for arti in character.artifacts: 
-          embed1 = discord.Embed(title = arti.nameText, color=0x06E5F5)
+          embed1 = discord.Embed(title = f"{arti.nameText}({arti.main_stat.value})",description = arti.main_stat.prop, color=0x06E5F5)
           for subs in arti.sub_stats:
             embed1.add_field(name = subs.prop, value = subs.value)
           await ctx.send(embed=embed1)
-        
-        
-        
 
-  # sub_name = []
-  # sub_value = []
-  # @commands.command()
-  # async def enka(self, ctx, uid, char):
-  #   # char = char.lower()
-  #   await client.load_lang()
-  #   user = await client.fetch_user(uid)
-  #   await ctx.send(f"**Nickname :** {user.player.nickname}")
-  #   await ctx.send(f"**Adventure Rank :** {user.player.level}")
-  #   for character in user.characters:
-  #     if str(character.name) == str(char):
-  #       await ctx.send(f"**Character :** {character.name}")
-  #       await ctx.send(f"**Weapon** : {character.weapon.nameText}")
-  #       for artifact in character.artifacts:
-  #           await ctx.send(f'\t **Artifact : **{artifact.setNameText} {artifact.nameText}:')
-  #           await ctx.send(f'\t{artifact.main_stat.prop}:{artifact.main_stat.value}')
-  #           for sub_stats in artifact.sub_stats:
-  #               await ctx.send(f'\t\t{sub_stats.prop}:{sub_stats.value}')
            
 def setup(bot):
   bot.add_cog(EnkaShinShin(bot))

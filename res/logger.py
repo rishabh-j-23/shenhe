@@ -1,10 +1,4 @@
-import os
-import math
-import random
 import logging
-import discord
-from discord.ext import commands, tasks
-from flask import Flask
 
 class logger:
   #KEEPSEYE ON WARNING LEVEL LOGS
