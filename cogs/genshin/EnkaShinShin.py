@@ -8,15 +8,56 @@ from enkapy import Enka
 client = Enka()
 class EnkaShinShin(commands.Cog):
 
+  @commands.command()
   async def player(self, ctx, uid):
-    client.load_lang()
-    
-    pass
-
-  @commands.command(brief = "Character Details")
-  async def enka(self, ctx, uid, *, char):
     await client.load_lang()
+    try:
+      user = await client.fetch_user(uid)
+    except:
+      await ctx.send("Couldn't find that player")
+      return
+    player = user.player
 
+    embed = discord.Embed(title = "Player Showcase : ",
+                         color = 0x06E5F5)
+    details = f"""**Nickname :** {player.nickname}
+    **Adventure Rank :** {player.level}
+    **World level :** {player.worldLevel}
+    **Signature :** {player.signature}
+    **Achievements :** {player.finishAchievementNum}
+    """
+    embed.add_field(name = "Player details : ",
+                   value = details)
+    
+    charData = []
+    for char in user.characters:
+      charData.append(f'{char.name}')
+
+    data = f"""{charData[0]} (lvl{player.showAvatarInfoList[0].level})
+    {charData[1]} (lvl{player.showAvatarInfoList[1].level})
+    {charData[2]} (lvl{player.showAvatarInfoList[2].level})
+    {charData[3]} (lvl{player.showAvatarInfoList[3].level})
+    {charData[4]} (lvl{player.showAvatarInfoList[4].level})
+    {charData[5]} (lvl{player.showAvatarInfoList[5].level})
+    {charData[6]} (lvl{player.showAvatarInfoList[6].level})
+    {charData[7]} (lvl{player.showAvatarInfoList[7].level})
+    """
+    embed.add_field(name = "Characters :", 
+                    value = data)
+    
+    abyss = f'{player.towerFloorIndex}-{player.towerLevelIndex}'
+    embed.add_field(name = "Abyss Progess :", 
+                    value = abyss)
+    embed.add_field()
+    embed.set_thumbnail(url = ctx.author.avatar_url)
+   
+    await ctx.send(embed = embed)
+
+  
+  @commands.command(brief = "Character Details")
+  async def enka(self, ctx, uid, *, char: str):
+    await client.load_lang()
+    char = char.capitalize()
     try:
       user = await client.fetch_user(uid)
     except:
