@@ -33,14 +33,14 @@ class EnkaShinShin(commands.Cog):
     for char in user.characters:
       charData.append(f'{char.name}')
 
-    data = f"""{charData[0]} (lvl{player.showAvatarInfoList[0].level})
-    {charData[1]} (lvl{player.showAvatarInfoList[1].level})
-    {charData[2]} (lvl{player.showAvatarInfoList[2].level})
-    {charData[3]} (lvl{player.showAvatarInfoList[3].level})
-    {charData[4]} (lvl{player.showAvatarInfoList[4].level})
-    {charData[5]} (lvl{player.showAvatarInfoList[5].level})
-    {charData[6]} (lvl{player.showAvatarInfoList[6].level})
-    {charData[7]} (lvl{player.showAvatarInfoList[7].level})
+    data = f"""{charData[0]} (lvl{player.showAvatarInfoList[0].level})\n
+    {charData[1]} (lvl{player.showAvatarInfoList[1].level})\n
+    {charData[2]} (lvl{player.showAvatarInfoList[2].level})\n
+    {charData[3]} (lvl{player.showAvatarInfoList[3].level})\n
+    {charData[4]} (lvl{player.showAvatarInfoList[4].level})\n
+    {charData[5]} (lvl{player.showAvatarInfoList[5].level})\n
+    {charData[6]} (lvl{player.showAvatarInfoList[6].level})\n
+    {charData[7]} (lvl{player.showAvatarInfoList[7].level})\n
     """
     embed.add_field(name = "Characters :", 
                     value = data)
