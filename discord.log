@@ -1,0 +1,1 @@
+2022-07-24 05:54:52,598:WARNING:discord.http: We are being rate limited. Retrying in 3.14 seconds. Handled under the bucket "905412039218987038:None:/channels/{channel_id}/messages"
