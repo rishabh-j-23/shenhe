@@ -4,8 +4,9 @@ import random
 
 class Miscellaneous(commands.Cog):
 
-  def __init__(self, bot):
-    self.bot = bot
+  @commands.command(brief = "Github link for the bot", aliases = ['gh', 'git'])
+  async def github(self, ctx):
+    await ctx.send('https://github.com/Ryxke/shenhe')
 
   #TO CHECK IF BOT IS WORKING
   @commands.command(brief = "Replies with Pong")

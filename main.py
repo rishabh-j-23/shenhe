@@ -34,6 +34,10 @@ async def on_ready():
 
     except Exception as e:
       print(e)
+
+@bot.commands
+async def load(ctx):
+  if ctx.
       
 # @bot.event
 # async def on_command_error(ctx, error):
