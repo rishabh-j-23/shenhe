@@ -49,6 +49,7 @@ class EnkaShinShin(commands.Cog):
     abyss = f'{player.towerFloorIndex}-{player.towerLevelIndex}'
     embed.add_field(name = "Abyss Progess :", 
                     value = abyss)
+    embed.set_footer(text=ctx.author.display_name, icon_url=ctx.author.avatar_url)
     embed.set_thumbnail(url = ctx.author.avatar_url)
    
     await ctx.send(embed = embed)
