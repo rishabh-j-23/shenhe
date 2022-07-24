@@ -56,9 +56,8 @@ class EnkaShinShin(commands.Cog):
 
   
   @commands.command(brief = "Character Details")
-  async def enka(self, ctx, uid, *, char: str):
+  async def enka(self, ctx, uid, *, char):
     await client.load_lang()
-    char = char.capitalize()
     try:
       user = await client.fetch_user(uid)
     except:
