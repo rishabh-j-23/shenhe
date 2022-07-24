@@ -11,11 +11,13 @@ bot = commands.Bot(command_prefix = "!!",
 cogs = ["cogs.genshin.Genshin",
         "cogs.miscellaneous.Miscellaneous",
         "cogs.music.Music",
-        "cogs.genshin.EnkaShinShin"]
+        "cogs.genshin.EnkaShinShin",
+        "cogs.genshin.Artifacts"]
 
 spareCogs = ["cogs.genshin.yelan.Yelan", 
              "cogs.genshin.status"]
 
+color = 0x06E5F5
 #SET PRESENSE AND ACTIVITY
 @bot.event
 async def on_connect():

@@ -8,10 +8,15 @@ from enkapy import Enka
 client = Enka()
 class EnkaShinShin(commands.Cog):
 
-  @commands.command()
-  async def enka(self, ctx, uid, char):
+  @commands.command(brief = "Character Details")
+  async def enka(self, ctx, uid, *, char):
     await client.load_lang()
-    user = await client.fetch_user(uid)
+
+    try:
+      user = await client.fetch_user(uid)
+    except:
+      await ctx.send("Your Character Details are Hidden")
+      return
 
     for character in user.characters:
       if str(character.name) == str(char):
