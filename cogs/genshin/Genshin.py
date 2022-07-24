@@ -86,7 +86,6 @@ class Genshin(commands.Cog):
     if name == 'yoimiya':
       await ctx.send('https://media.discordapp.net/attachments/943505502682382406/994489866505179196/yF233Nb.png')
     
-    
 
 def setup(bot):
   bot.add_cog(Genshin(bot))

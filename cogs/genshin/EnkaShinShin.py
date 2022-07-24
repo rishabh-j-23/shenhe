@@ -8,6 +8,11 @@ from enkapy import Enka
 client = Enka()
 class EnkaShinShin(commands.Cog):
 
+  async def player(self, ctx, uid):
+    client.load_lang()
+    
+    pass
+
   @commands.command(brief = "Character Details")
   async def enka(self, ctx, uid, *, char):
     await client.load_lang()
