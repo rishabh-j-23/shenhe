@@ -16,5 +16,3 @@ class Art:
       print(e)
        
     return random.choice(image)
-
-print(Art.art())
