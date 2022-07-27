@@ -17,7 +17,7 @@ class Genshin(commands.Cog):
     await ctx.send("Effective Attack is : " + str(dmg))
 
   #IMPORTS RANDOM ART FROM waifu_art.py
-  @commands.command(brief = "Sends random art")
+  @commands.command(brief = "Sends random art (May send NSFW art)", description = "Sends random art\n (may contain nsfw art)", aliases = ["art"])
   async def randomart(self, ctx):
     dir = "cogs/genshin/images/Art/Genshin/"
     image = discord.File(dir + Art.art())
