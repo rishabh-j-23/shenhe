@@ -35,9 +35,20 @@ async def on_ready():
     except Exception as e:
       print(e)
 
-@bot.commands
+@bot.command()
 async def load(ctx):
-  if ctx.
+  if ctx.author.id == 783221172560855081 or ctx.author.id == 536554334033543183:
+    for cog in cogs:
+        try:
+          bot.load_extension(cog) 
+          await ctx.message.add_reaction("✅")
+        except Exception as e:
+          print(e)
+
+  else: 
+    await ctx.message.add_reaction("❎")
+    
+    
       
 # @bot.event
 # async def on_command_error(ctx, error):

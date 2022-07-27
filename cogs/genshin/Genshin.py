@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 
-from res.art import WaifuArt
+from res.art import Art
 from res.builds import builds, artifacts
 from res.version_summary import version_summary
 
@@ -19,7 +19,9 @@ class Genshin(commands.Cog):
   #IMPORTS RANDOM ART FROM waifu_art.py
   @commands.command(brief = "Sends random art")
   async def randomart(self, ctx):
-    await ctx.send(WaifuArt.ranArt()) 
+    dir = "cogs/genshin/images/Art/Genshin/"
+    image = discord.File(dir + Art.art())
+    await ctx.send(file = image) 
 
   #CHARACTER BUILDS
   @commands.command(brief = "Jean Build")
