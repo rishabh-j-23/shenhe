@@ -6,6 +6,7 @@ from enkapy import Enka
 
 
 client = Enka()
+Ryxke = 712994834
 class EnkaShinShin(commands.Cog):
 
   @commands.command(brief = "Character Details")
@@ -17,13 +18,14 @@ class EnkaShinShin(commands.Cog):
       await ctx.send("Your Character Details are Hidden")
       return
 
+    des = ""
     artifactData = []
     artiSubsData = []
     flowerSubs, featherSubs, sandsSubs, gobletSubs, circletSubs = [],[],[],[],[]
     
     for character in user.characters:
       if str(character.name) == str(char):
-        description = f"**Character :** {character.name}\n **Friendship :** {character.friendship.level}\n **Weapon** : {character.weapon.nameText}"
+        des = f"**Character :** {character.name}\n **Friendship :** {character.friendship.level}\n **Weapon** : {character.weapon.nameText}"
       
         for arti in character.artifacts: 
           
@@ -74,14 +76,18 @@ class EnkaShinShin(commands.Cog):
     for i in range(len(flowerSubs)):
       circlet = circlet + '\n' + circletSubs[i]   
         
-    embed = discord.Embed(title = f"{user.player.nickname} Wl{user.player.worldLevel} {uid}", description = description, color=0x06E5F5)
+    embed = discord.Embed(title = f"{user.player.nickname} Wl{user.player.worldLevel} {uid}", description = des, color=0x06E5F5)
     embed.set_footer(text=ctx.author.display_name, icon_url=ctx.author.avatar_url)
     embed.set_thumbnail(url = "https://media.discordapp.net/attachments/943505502682382406/992816537645887589/unknown.png")
-    embed.add_field(name = artifactData[0], value = flower)
-    embed.add_field(name = artifactData[1], value = feather)
-    embed.add_field(name = artifactData[2], value = sands)
-    embed.add_field(name = artifactData[3], value = goblet)
-    embed.add_field(name = artifactData[4], value = circlet)
+    try:
+       embed.add_field(name = artifactData[0], value = flower)
+       embed.add_field(name = artifactData[1], value = feather)
+       embed.add_field(name = artifactData[2], value = sands)
+       embed.add_field(name = artifactData[3], value = goblet)
+       embed.add_field(name = artifactData[4], value = circlet)
+    except:
+      await ctx.send("Character is missing artifact \nOther reason : Character not using fully leveled 5star/4star artifact")
+      return
 
     await ctx.send(embed = embed)
     
