@@ -39,7 +39,9 @@ class Genshin(commands.Cog):
   @commands.command(brief="Artiact CV Chart")
   async def cv(self, ctx):
     image = "https://media.discordapp.net/attachments/865982244739874829/885365654079799326/image0.png"
-    await ctx.send(image)
+    embed = discord.Embed(title = "Artifact CV chart")
+    embed.set_image(url = image)
+    await ctx.send(embed = embed)
 
   
   #Raiden Q gif
@@ -60,10 +62,12 @@ class Genshin(commands.Cog):
     await ctx.send(link)
 
   #All of Ryxke Weapons
-  @commands.command(brief = "Ryxke's SSR  Weapon Collection")
+  @commands.command(brief = "Ryxke's SSR  Weapon Collection", aliases = ["rw"])
   async def ryxke_weapon(self, ctx):
     link = "https://media.discordapp.net/attachments/943505502682382406/977056558053748736/IMG_20220520_065952.jpg"
-    await ctx.send(link)
+    embed = discord.Embed(title = "Weapon flex by me")
+    embed.set_image(url = link)
+    await ctx.send(embed = embed)
 
   #Mats required to level characters overall(Genshin)
   @commands.command(brief = "Genshin Character and Weapon mats")
