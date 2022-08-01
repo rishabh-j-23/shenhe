@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 
+import res
 from res.art import Art
 from res.builds import builds, artifacts
 from res.version_summary import version_summary
@@ -19,7 +20,7 @@ class Genshin(commands.Cog):
   #IMPORTS RANDOM ART FROM waifu_art.py
   @commands.command(brief = "Sends random art (May send NSFW art)", description = "Sends random art\n (may contain nsfw art)", aliases = ["art"])
   async def randomart(self, ctx):
-    dir = "cogs/genshin/images/Art/Genshin/"
+    dir = "res/images/art/"
     image = discord.File(dir + Art.art())
     await ctx.send(file = image) 
 
