@@ -10,7 +10,7 @@ Ryxke = 712994834
 class EnkaShinShin(commands.Cog):
 
   @commands.command(brief = "Character Details")
-  async def enka(self, ctx, uid, char):
+  async def enka(self, ctx, uid, *, char):
     await client.load_lang()
     try:
       user = await client.fetch_user(uid)
