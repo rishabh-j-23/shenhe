@@ -6,7 +6,7 @@ import discord
 
 class Art:
     def art():
-        folder_dir = "cogs/genshin/images/Art/Genshin/"
+        folder_dir = "res/images/art"
         image = []
         try:
             for images in os.listdir(folder_dir):
