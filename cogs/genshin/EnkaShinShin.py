@@ -28,7 +28,7 @@ class EnkaShinShin(commands.Cog):
     
     for character in user.characters:
       if str(character.name) == str(char):
-        des = f"**Character :** {character.name}\n **Friendship :** {character.friendship.level}\n **Weapon** : {character.weapon.nameText}"
+        des = f"**Character :** {character.name}\n **Friendship :** {character.friendship.level}\n **Weapon** : {character.weapon.nameText} (Lvl{character.weapon.level})"
 
         com = character.combat
         """com = char.combat     
