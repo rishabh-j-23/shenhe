@@ -11,6 +11,9 @@ class EnkaShinShin(commands.Cog):
 
   @commands.command(brief = "Character Details")
   async def enka(self, ctx, uid, *, char):
+    if uid == 'ryxke':
+      uid = 712994834
+
     await client.load_lang()
     try:
       user = await client.fetch_user(uid)
@@ -94,6 +97,9 @@ class EnkaShinShin(commands.Cog):
 
   @commands.command(brief = "Shows Player Details")
   async def player(self, ctx, uid):
+    if uid == 'ryxke':
+      uid = 712994834
+      
     await client.load_lang()
     try:
       user = await client.fetch_user(uid)
