@@ -6,14 +6,14 @@ from enkapy import Enka
 
 
 client = Enka()
-Ryxke = 712994834
 class EnkaShinShin(commands.Cog):
 
   @commands.command(brief = "Character Details")
   async def enka(self, ctx, uid, *, char):
+
     if uid == 'ryxke':
       uid = 712994834
-
+    
     await client.load_lang()
     try:
       user = await client.fetch_user(uid)
@@ -29,6 +29,15 @@ class EnkaShinShin(commands.Cog):
     for character in user.characters:
       if str(character.name) == str(char):
         des = f"**Character :** {character.name}\n **Friendship :** {character.friendship.level}\n **Weapon** : {character.weapon.nameText}"
+
+        com = character.combat
+        """com = char.combat     
+      print(com.FIGHT_PROP_CUR_ATTACK)
+      print(com.FIGHT_PROP_CUR_HP)
+      print(com.FIGHT_PROP_CUR_DEFENSE)
+      print(com.FIGHT_PROP_ELEMENT_MASTERY)"""
+
+        stats = f'Max HP : {com.FIGHT_PROP_CUR_HP} \n Attack :{com.FIGHT_PROP_CUR_ATTACK} \nDef : {com.FIGHT_PROP_CUR_DEFENSE} \nEM : {com.FIGHT_PROP_ELEMENT_MASTERY}'
       
         for arti in character.artifacts: 
           
@@ -83,6 +92,7 @@ class EnkaShinShin(commands.Cog):
     embed.set_footer(text=ctx.author.display_name, icon_url=ctx.author.avatar_url)
     embed.set_thumbnail(url = "https://media.discordapp.net/attachments/943505502682382406/992816537645887589/unknown.png")
     try:
+       embed.add_field(name = 'Character Stats', value = stats)
        embed.add_field(name = artifactData[0], value = flower)
        embed.add_field(name = artifactData[1], value = feather)
        embed.add_field(name = artifactData[2], value = sands)
@@ -97,9 +107,10 @@ class EnkaShinShin(commands.Cog):
 
   @commands.command(brief = "Shows Player Details")
   async def player(self, ctx, uid):
+
     if uid == 'ryxke':
       uid = 712994834
-
+      
     await client.load_lang()
     try:
       user = await client.fetch_user(uid)
@@ -110,12 +121,8 @@ class EnkaShinShin(commands.Cog):
 
     embed = discord.Embed(title = "Player Showcase : ",
                          color = 0x06E5F5)
-    details = f"""**Nickname :** {player.nickname}
-    **Adventure Rank :** {player.level}
-    **World level :** {player.worldLevel}
-    **Signature :** *{player.signature}*
-    **Achievements :** {player.finishAchievementNum}
-    """
+    details = f"**Nickname :** {player.nickname} \n**Adventure Rank :** {player.level} \n**World level :** {player.worldLevel} \n**Signature :** *{player.signature}* \n**Achievements :** {player.finishAchievementNum}"
+    
     embed.add_field(name = "Player details : ",
                    value = details)
     
@@ -130,12 +137,12 @@ class EnkaShinShin(commands.Cog):
     embed.add_field(name = "Characters :", value = data)
     
     abyss = f'Floor {player.towerFloorIndex} Chamber {player.towerLevelIndex}'
-    embed.add_field(name = "Abyss Progess :", 
-                    value = abyss)
+    embed.add_field(name = "Abyss Progess :", value = abyss)
     embed.set_footer(text=ctx.author.display_name, icon_url=ctx.author.avatar_url)
     embed.set_thumbnail(url = ctx.author.avatar_url)
    
     await ctx.send(embed = embed)
+
            
 def setup(bot):
   bot.add_cog(EnkaShinShin(bot))
