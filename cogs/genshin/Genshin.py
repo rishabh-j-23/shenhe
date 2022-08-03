@@ -6,10 +6,22 @@ from res.art import Art
 from res.builds import builds, artifacts
 from res.version_summary import version_summary
 
+pullHistory = {
+  'ryxke' : 'res/images/genshin/paimonmoe/ryxke_genshin_pull_history.jpg'
+}
+
 class Genshin(commands.Cog):
 
   def __init__(self, bot):
     self.bot = bot
+
+  #Genshin Wishing History
+  @commands.command(brief = "Genshin Wishing history from paimon.moe", aliases = ['wh'])
+  async def wishhistory(self, ctx, user: str):
+
+    user = user.lower()
+    history = discord.File(pullHistory.get(user))
+    await ctx.send(file = history)
 
   # EFFECTIVE ATTACK
   @commands.command(brief = "Used for comparing Builds")
