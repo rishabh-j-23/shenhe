@@ -27,15 +27,16 @@ class EnkaShinShin(commands.Cog):
     flowerSubs, featherSubs, sandsSubs, gobletSubs, circletSubs = [],[],[],[],[]
     
     for character in user.characters:
-      if str(character.name) == str(char):
-        des = f"**Character :** {character.name}\n **Friendship :** {character.friendship.level}\n **Weapon** : {character.weapon.nameText} (Lvl{character.weapon.level})"
+      if str(character.name) == str(char):  
+
+        levels = []
+        for i in character.skill_level.values():
+         levels.append(i)
+
+        des = f"Lvl{character.level}. {character.name} \n**Friendship :** {character.friendship.level} \n**Weapon** : R{character.weapon.refine + 1} {character.weapon.nameText} (Lvl{character.weapon.level})"
+        des = des + f'\n**Talents :**  {levels[0]}/{levels[1]}/{levels[2]}'
 
         com = character.combat
-        """com = char.combat     
-      print(com.FIGHT_PROP_CUR_ATTACK)
-      print(com.FIGHT_PROP_CUR_HP)
-      print(com.FIGHT_PROP_CUR_DEFENSE)
-      print(com.FIGHT_PROP_ELEMENT_MASTERY)"""
 
         stats = f'Max HP : {com.FIGHT_PROP_CUR_HP} \n Attack :{com.FIGHT_PROP_CUR_ATTACK} \nDef : {com.FIGHT_PROP_CUR_DEFENSE} \nEM : {com.FIGHT_PROP_ELEMENT_MASTERY}'
       

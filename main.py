@@ -9,7 +9,7 @@ logger.run()
 bot = commands.Bot(command_prefix="!!", intents=discord.Intents.default())
 cogs = [
     "cogs.genshin.Genshin", "cogs.miscellaneous.Miscellaneous",
-    "cogs.music.Music", 
+    "cogs.music.Music",
     "cogs.genshin.EnkaShinShin",
     "cogs.genshin.Artifacts"
 ]
@@ -36,17 +36,17 @@ async def on_ready():
             print(e)
 
 
-@bot.command()
-async def load(ctx):
-    if ctx.author.id == 783221172560855081 or ctx.author.id == 536554334033543183:
-        for cog in cogs:
-            try:
-                await ctx.message.add_reaction("✅")
-            except Exception as e:
-                print(e)
+# @bot.command()
+# async def load(ctx):
+#     if ctx.author.id == 783221172560855081 or ctx.author.id == 536554334033543183:
+#         for cog in cogs:
+#             try:
+#                 await ctx.message.add_reaction("✅")
+#             except Exception as e:
+#                 print(e)
 
-    else:
-        await ctx.message.add_reaction("❎")
+#     else:
+#         await ctx.message.add_reaction("❎")
 
 
 # @bot.event
