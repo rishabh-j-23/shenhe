@@ -33,7 +33,7 @@ class EnkaShinShin(commands.Cog):
         for i in character.skill_level.values():
          levels.append(i)
 
-        des = f"Lvl{character.level} {character.name} \n**Friendship :** {character.friendship.level} \n**Weapon** : R{character.weapon.refine + 1} {character.weapon.nameText} (Lvl{character.weapon.level})"
+        des = f"{character.name} \n**Friendship :** {character.friendship.level} \n**Weapon** : R{character.weapon.refine + 1} {character.weapon.nameText} (Lvl{character.weapon.level})"
         des = des + f'\n**Talents :**  {levels[0]}/{levels[1]}/{levels[2]}'
 
         com = character.combat
