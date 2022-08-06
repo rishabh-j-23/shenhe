@@ -11,7 +11,8 @@ cogs = [
     "cogs.genshin.Genshin", "cogs.miscellaneous.Miscellaneous",
     "cogs.music.Music",
     "cogs.genshin.EnkaShinShin",
-    "cogs.genshin.Artifacts"
+    "cogs.genshin.Artifacts",
+    "cogs.changelogs"
 ]
 
 color = 0x06E5F5
