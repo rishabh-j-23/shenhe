@@ -5,3 +5,7 @@ PyNaCl
 youtube_dl
 ffmpeg
 enka.py
+aiohttp
+asyncio
+msgpack
+ujson

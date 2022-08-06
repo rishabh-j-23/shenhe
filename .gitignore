@@ -5,3 +5,4 @@ pyproject.toml
 .config
 test.py
 node_modules
+__pycache__
