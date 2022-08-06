@@ -11,5 +11,5 @@ class changelogs(commands.Cog):
         await ctx.send(embed = embed)
 
 def setup(bot):
-    bot.add_cog(changelchangelogsogs(bot)d
+    bot.add_cog(changelogs(bot))
     
