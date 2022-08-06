@@ -6,8 +6,42 @@ from enkapy import Enka
 
 
 client = Enka()
+
 class EnkaShinShin(commands.Cog):
 
+  cr, cd = 0, 0
+  cv = 0
+
+  @commands.command(brief = 'Shows Artifact Crit Value', aliases = ['articv', 'acv'])
+  async def artifactcv(self, ctx, uid, char):
+
+    if uid == 'ryxke':
+      uid = 712994834
+    
+    await client.load_lang()
+    user = await client.fetch_user(uid)
+    
+    for character in user.characters:
+      if str(character.name) == char:
+        for arti in character.artifacts:
+          if str(arti.main_stat.prop) == "FIGHT_PROP_CRITICAL":
+            self.cr = self.cr + arti.main_stat.value
+          elif str(arti.main_stat.prop) == 'FIGHT_PROP_CRITICAL_HURT':
+            self.cd = self.cd + arti.main_stat.value
+
+          for subs in arti.sub_stats:
+            if str(subs.prop) == "FIGHT_PROP_CRITICAL":
+              self.cr = self.cr + subs.value
+            elif str(subs.prop) == 'FIGHT_PROP_CRITICAL_HURT':
+              self.cd = self.cd + subs.value
+
+    self.cv = self.cd + self.cr*2
+
+    embed = discord.Embed(title = f'Artifact CV for {char}', description = f'CV : {self.cv}',
+                          color = 0x06E5F5)
+    await ctx.send(embed = embed)
+
+      
   @commands.command(brief = "Character Details")
   async def enka(self, ctx, uid, *, char):
 
@@ -44,7 +78,7 @@ class EnkaShinShin(commands.Cog):
         com = character.combat
 
         stats = f'Max HP : {com.FIGHT_PROP_CUR_HP} \n Attack :{com.FIGHT_PROP_CUR_ATTACK} \nDef : {com.FIGHT_PROP_CUR_DEFENSE} \nEM : {com.FIGHT_PROP_ELEMENT_MASTERY}'
-      
+  
         for arti in character.artifacts: 
           
           artifactData.append(f"{arti.nameText}({statName(arti.main_stat.prop)} : {arti.main_stat.value})")
