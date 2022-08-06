@@ -9,7 +9,8 @@ class changelogs(commands.Cog):
         description = """
         - added command for artifact cv ie !!artifactcv <uid> <char>.
         - Shows artifact cd, cr and cv in !!enka command
-        - added char cons, talents and level in !!enka"""
+        - added char cons, talents and level in !!enka
+        """
         embed = discord.Embed(title = 'Changelogs', description = description, color = 0x06E5F5)
         await ctx.send(embed = embed)
 

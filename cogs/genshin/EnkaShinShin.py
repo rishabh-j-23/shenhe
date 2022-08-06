@@ -10,9 +10,9 @@ client = Enka()
 class EnkaShinShin(commands.Cog):
 
   @commands.command(brief = 'Shows Artifact Crit Value', aliases = ['articv', 'acv'])
-  async def artifactcv(self, ctx, uid, char):
+  async def artifactcv(self, ctx, uid, *, char):
 
-    cr, cd, cv = 0, 0, 0
+    cr, cd = 0, 0
 
     if uid == 'ryxke':
       uid = 712994834
@@ -38,6 +38,7 @@ class EnkaShinShin(commands.Cog):
 
     embed = discord.Embed(title = f'Artifact CV for {char}', description = f'CV : {cv}',
                           color = 0x06E5F5)
+    print(cd, cr)
     await ctx.send(embed = embed)
 
       
