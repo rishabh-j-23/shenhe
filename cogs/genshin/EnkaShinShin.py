@@ -92,7 +92,7 @@ class EnkaShinShin(commands.Cog):
 
         com = character.combat
 
-        stats = f'Max HP : {com.FIGHT_PROP_CUR_HP} \n Attack :{com.FIGHT_PROP_CUR_ATTACK} \nDef : {com.FIGHT_PROP_CUR_DEFENSE} \nEM : {com.FIGHT_PROP_ELEMENT_MASTERY}'
+        stats = f'Max HP : {com.FIGHT_PROP_CUR_HP} \nAttack :{com.FIGHT_PROP_CUR_ATTACK} \nDef : {com.FIGHT_PROP_CUR_DEFENSE} \nEM : {com.FIGHT_PROP_ELEMENT_MASTERY}'
         stats = stats + f'\nArtifact CV : {cr * 2 + cd}'
         for arti in character.artifacts: 
           
