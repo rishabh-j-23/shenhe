@@ -10,3 +10,4 @@ asyncio
 msgpack
 ujson
 pymongo
+pymongo[srv]
