@@ -26,7 +26,11 @@ class EnkaShinShin(commands.Cog):
     embed = discord.Embed(title = 'Successful Added', 
                           description = f'Successful addes {mongoClient.get_user(uid)}')
     await ctx.send(embed = embed)
+<<<<<<< Updated upstream
       
+=======
+
+>>>>>>> Stashed changes
   @commands.command(brief = 'Shows Artifact Crit Value', aliases = ['articv', 'acv'])
   async def artifactcv(self, ctx, id, *, char):
     
