@@ -23,13 +23,10 @@ class EnkaShinShin(commands.Cog):
 
     mongoClient.add(user, uid)
 
-    if mongoClient.get_user(uid) == int(uid) and mongoClient.get_uid(user) == str(uid):
-      embed = discord.Embed(title = 'Successful Added', 
-                            description = f'Successful addes {mongoClient.get_user(uid)}')
-      await ctx.send(embed = embed)
-    else:
-      await ctx.send(f'{user} not added') 
-
+    embed = discord.Embed(title = 'Successful Added', 
+                          description = f'Successful addes {mongoClient.get_user(uid)}')
+    await ctx.send(embed = embed)
+      
   @commands.command(brief = 'Shows Artifact Crit Value', aliases = ['articv', 'acv'])
   async def artifactcv(self, ctx, id, *, char):
     
