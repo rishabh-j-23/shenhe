@@ -69,7 +69,7 @@ class EnkaShinShin(commands.Cog):
 
       
   @commands.command(brief = "Character Details")
-  async def enka(self, ctx, uid, *, char):
+  async def enka(self, ctx, id, *, char):
     
     
     cr, cd = 0, 0
@@ -192,7 +192,7 @@ class EnkaShinShin(commands.Cog):
     
 
   @commands.command(brief = "Shows Player Details")
-  async def player(self, ctx, uid):
+  async def player(self, ctx, id):
 
     if self.isInteger(id) == True:
       uid = id
