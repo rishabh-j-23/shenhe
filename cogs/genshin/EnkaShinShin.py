@@ -3,20 +3,47 @@ from discord.ext import tasks, commands
 import asyncio
 import enkapy
 from enkapy import Enka
+from api.mongo import Mongo
 
 
 client = Enka()
-
+mongoClient = Mongo()
 class EnkaShinShin(commands.Cog):
 
+  def isInteger(self, s):
+ 
+    for i in range(len(s)):
+        if s[i].isdigit() != True:
+            return False
+ 
+    return True
+
+  @commands.command()
+  async def register(self, ctx, user: str, uid: int):
+
+    mongoClient.add(user, uid)
+
+    if mongoClient.get_user(uid) == int(uid) and mongoClient.get_uid(user) == str(uid):
+      embed = discord.Embed(title = 'Successful Added', 
+                            description = f'Successful addes {mongoClient.get_user(uid)}')
+      await ctx.send(embed = embed)
+    else:
+      await ctx.send(f'{user} not added') 
+
   @commands.command(brief = 'Shows Artifact Crit Value', aliases = ['articv', 'acv'])
-  async def artifactcv(self, ctx, uid, *, char):
-
-    cr, cd = 0, 0
-
-    if uid == 'ryxke':
-      uid = 712994834
+  async def artifactcv(self, ctx, id, *, char):
     
+    cr, cd = 0, 0
+    
+    # if uid == 'ryxke':
+    #   uid = 712994834
+
+    if self.isInteger(id) == True:
+      uid = id
+    else:
+      id = str(id)
+      uid = mongoClient.get_uid(id)
+  
     await client.load_lang()
     user = await client.fetch_user(uid)
     
@@ -38,16 +65,19 @@ class EnkaShinShin(commands.Cog):
 
     embed = discord.Embed(title = f'Artifact CV for {char}', description = f'CV : {cv}',
                           color = 0x06E5F5)
-    print(cd, cr)
     await ctx.send(embed = embed)
 
       
   @commands.command(brief = "Character Details")
   async def enka(self, ctx, uid, *, char):
     
+    
     cr, cd = 0, 0
-    if uid == 'ryxke':
-      uid = 712994834
+    if self.isInteger(id) == True:
+      uid = id
+    else:
+      id = str(id)
+      uid = mongoClient.get_uid(id)
     
     await client.load_lang()
     try:
@@ -164,8 +194,11 @@ class EnkaShinShin(commands.Cog):
   @commands.command(brief = "Shows Player Details")
   async def player(self, ctx, uid):
 
-    if uid == 'ryxke':
-      uid = 712994834
+    if self.isInteger(id) == True:
+      uid = id
+    else:
+      id = str(id)
+      uid = mongoClient.get_uid(id)
       
     await client.load_lang()
     try:
