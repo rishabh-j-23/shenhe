@@ -24,7 +24,9 @@ class EnkaShinShin(commands.Cog):
     mongoClient.add(user, uid)
 
     embed = discord.Embed(title = 'Successful Added', 
-                          description = f'Successful addes {mongoClient.get_user(uid)}')
+                          description = f'Successful added {user} {uid} \n*uids and username are not shared so rest assured while registering*', color = 0x06E5F5)
+    embed.set_thumbnail(url= ctx.author.avatar_url)
+    embed.set_footer(text='used for !!enka and !!player commands currently')
     await ctx.send(embed = embed)
 
   @commands.command(brief = 'Shows Artifact Crit Value', aliases = ['articv', 'acv'])
