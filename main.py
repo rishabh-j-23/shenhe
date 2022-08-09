@@ -38,10 +38,10 @@ async def on_ready():
 
 
 
-@bot.event
-async def on_command_error(ctx, error):
-    print(error)
-    embed = discord.Embed(title = error, description = "", color = color)
-    await ctx.send(embed = embed)
+# @bot.event
+# async def on_command_error(ctx, error):
+#     print(error)
+#     embed = discord.Embed(title = error, description = "", color = color)
+#     await ctx.send(embed = embed)
 
 bot.run(os.environ['TOKEN'])

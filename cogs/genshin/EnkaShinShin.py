@@ -3,11 +3,11 @@ from discord.ext import tasks, commands
 import asyncio
 import enkapy
 from enkapy import Enka
-from api.mongo import Mongo
+from modules.mongo_genshin import MongoGenshin
 
 
 client = Enka()
-mongoClient = Mongo()
+mongoClient = MongoGenshin()
 class EnkaShinShin(commands.Cog):
 
   def isInteger(self, s):

@@ -4,7 +4,7 @@ import json
 
 
 class Artifacts(commands.Cog):
-    def printarti(name):
+    def printarti(self, name):
         with open("res/genshin/artifacts.json", "r") as op:
             data = json.load(op)
             print(data[name]["name"])

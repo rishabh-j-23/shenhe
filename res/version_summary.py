@@ -1,7 +1,7 @@
 class version_summary:
-  
-  def v2_8():
-    summary = """Genshin Impact 2.8 Livestream Summary
+
+    def v2_8(self):
+        summary = """Genshin Impact 2.8 Livestream Summary
 
 **Primogem Codes**
 DTNVKAWBWSF5
@@ -48,9 +48,4 @@ New Inazuma OST Album: Shimmering Voyage 2
 **SURPRISE PREVIEW OF SUMERU**
  https://twitter.com/Plusleleaks/status/1543210693117513728?t=BbVDqv2spzmUtnp_LhVj_g&s=19 
  https://twitter.com/Plusleleaks/status/1543211186938064897?t=IaTsZTkGqJvsKgrqfBlbcg&s=19 """
-    return summary
-
-       
-  
-  
-  
+        return summary
