@@ -7,6 +7,11 @@ class changelogs(commands.Cog):
     async def changelogs(self, ctx):
 
         description = """
+- added Genshin v3.0 summary
+        """
+        
+"""
+before genshin v3.0
 - added uid resgistering (database) as shown in image below
 - added command for artifact cv ie !!artifactcv <uid> <char>.
 - Shows artifact cd, cr and cv in !!enka command
