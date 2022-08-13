@@ -95,10 +95,21 @@ class Genshin(commands.Cog):
   @commands.command(brief= "Versions Summary")
   async def summary(self, ctx, version: str):
     if (version == "2.8"):
-      embed = discord.Embed(title = "v2.8 Summary", description = version_summary.v2_8(), color=0x06E5F5)
-      embed.set_thumbnail(url = "https://media.discordapp.net/attachments/943505425742045267/992808669026721832/unknown.png?width=603&height=603")
-      embed.set_footer(text=ctx.author.display_name, icon_url=ctx.author.avatar_url)
-      await ctx.send(embed=embed)
+      title = "«« ━━━━━━ ✥ 2.8 Presentation Summary ✥ ━━━━━━━ »»y"
+      description = version_summary.v2_8(self)
+      image = 'https://media.discordapp.net/attachments/943505502682382406/1008020971829067867/unknown.png?width=1073&height=603'
+
+    elif (version == '3.0'):
+      title = "«« ━━━━━━ ✥ 3.0 Presentation Summary ✥ ━━━━━━━ »»"
+      description = version_summary().v3_0()
+      image = 'https://media.discordapp.net/attachments/943505502682382406/1008019595443048609/unknown.png'
+      
+
+    embed = discord.Embed(title = title, description = description, color=0x06E5F5)
+    embed.set_thumbnail(url = "https://media.discordapp.net/attachments/943505425742045267/992808669026721832/unknown.png?width=603&height=603")
+    embed.set_footer(text=ctx.author.display_name, icon_url=ctx.author.avatar_url)
+    embed.set_image(url= image)
+    await ctx.send(embed=embed)
 
   @commands.command(brief = "Genshin Char Infographics")
   async def info(self, ctx, name: str):
