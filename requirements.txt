@@ -11,3 +11,4 @@ msgpack
 ujson
 pymongo
 pymongo[srv]
+requests
