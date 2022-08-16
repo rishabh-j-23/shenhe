@@ -23,7 +23,6 @@ class genshin_details(commands.Cog):
         embed.add_field(name = 'Normal Attacks', value = naSkill)
         embed.add_field(name='Elemental skill', value= eleSkill)
         embed.add_field(name='Burst Skill', value= burstSkill)
-        dir = 'res/images/genshin/character_icons/'
 
         await ctx.send(embed = embed)
 

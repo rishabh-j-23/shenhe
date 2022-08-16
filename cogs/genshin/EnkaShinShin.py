@@ -82,7 +82,7 @@ class EnkaShinShin(commands.Cog):
     try:
       user = await client.fetch_user(uid)
     except:
-      await ctx.send("Your Character Details are Hidden")
+      await ctx.send("Please recheck the UID or Turn on Character Details in game")
       return
 
     des = ""
@@ -184,7 +184,7 @@ class EnkaShinShin(commands.Cog):
        embed.add_field(name = artifactData[3], value = goblet)
        embed.add_field(name = artifactData[4], value = circlet)
     except:
-      await ctx.send("Character is missing artifact \nOther reason : Character not using fully leveled 5star/4star artifact")
+      await ctx.send('Error while getting data for specified character \nPossible reasons \n-Character dont have artifact \n-UID is not available')
       return
 
     await ctx.send(embed = embed)
@@ -205,6 +205,7 @@ class EnkaShinShin(commands.Cog):
     except:
       await ctx.send("Couldn't find that player")
       return
+      
     player = user.player
 
     embed = discord.Embed(title = "Player Showcase : ",
