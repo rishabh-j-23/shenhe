@@ -10,6 +10,20 @@ client = Enka()
 mongoClient = MongoGenshin()
 class EnkaShinShin(commands.Cog):
 
+  def capitalize(self, name: str):
+    name = name.capitalize()
+    if name.endswith(' ') == True:
+        name = name.removesuffix(" ")
+        
+    for i in range(len(name)):
+
+        if name[i] == ' ':
+            print(i)
+            caps = name[i+1].capitalize()
+            name = name.replace(name[i+1], caps)
+
+    return name
+
   def isInteger(self, s):
  
     for i in range(len(s)):
@@ -31,6 +45,8 @@ class EnkaShinShin(commands.Cog):
 
   @commands.command(brief = 'Shows Artifact Crit Value', aliases = ['articv', 'acv'])
   async def artifactcv(self, ctx, id, *, char):
+
+    char = self.capitalize(char)
     
     cr, cd = 0, 0
     
@@ -73,7 +89,9 @@ class EnkaShinShin(commands.Cog):
       
   @commands.command(brief = "Character Details")
   async def enka(self, ctx, id, *, char):
-    
+
+    char = self.capitalize(char)
+
     cr, cd = 0, 0
     if self.isInteger(id) == True:
       uid = id
@@ -203,6 +221,8 @@ class EnkaShinShin(commands.Cog):
 
   @commands.command(brief = "Shows Player Details")
   async def player(self, ctx, id):
+
+    char = self.capitalize(char)
 
     if self.isInteger(id) == True:
       uid = id
