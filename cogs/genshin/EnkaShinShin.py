@@ -44,8 +44,12 @@ class EnkaShinShin(commands.Cog):
       uid = mongoClient.get_uid(id)
   
     await client.load_lang()
-    user = await client.fetch_user(uid)
-    
+    try:
+      user = await client.fetch_user(uid)
+    except:
+      await ctx.send("Please recheck the UID or Turn on Character Details in game")
+      return
+
     for character in user.characters:
       if str(character.name) == char:
         for arti in character.artifacts:
@@ -70,7 +74,6 @@ class EnkaShinShin(commands.Cog):
   @commands.command(brief = "Character Details")
   async def enka(self, ctx, id, *, char):
     
-    
     cr, cd = 0, 0
     if self.isInteger(id) == True:
       uid = id
@@ -88,6 +91,7 @@ class EnkaShinShin(commands.Cog):
     des = ""
     artifactData = []
     artiSubsData = []
+    er = 0
     flowerSubs, featherSubs, sandsSubs, gobletSubs, circletSubs = [],[],[],[],[]
 
     for character in user.characters:
@@ -97,13 +101,20 @@ class EnkaShinShin(commands.Cog):
             cr = cr + arti.main_stat.value
           elif str(arti.main_stat.prop) == 'FIGHT_PROP_CRITICAL_HURT':
             cd = cd + arti.main_stat.value
+          
+          if str(arti.main_stat.prop) == 'FIGHT_PROP_CHARGE_EFFICIENCY':
+            er = er + arti.main_stat.value
 
           for subs in arti.sub_stats:
             if str(subs.prop) == "FIGHT_PROP_CRITICAL":
               cr = cr + subs.value
             elif str(subs.prop) == 'FIGHT_PROP_CRITICAL_HURT':
               cd = cd + subs.value
-    
+            
+            if str(subs.prop) == 'FIGHT_PROP_CHARGE_EFFICIENCY':
+              er = er + subs.value
+
+    print(er)
     for character in user.characters:
       if str(character.name) == str(char):
 
@@ -118,12 +129,12 @@ class EnkaShinShin(commands.Cog):
 
         des = f"Lvl{character.level} C{cons} {character.name} \n**Friendship :** {character.friendship.level} \n**Weapon** : R{character.weapon.refine + 1} {character.weapon.nameText} (Lvl{character.weapon.level})"
         des = des + f'\n**Talents :**  {levels[0]}/{levels[1]}/{levels[2]}'
-        des = des + f'\nArtifact CR : {cr} \nArtifact CD : {cd}'
+        des = des + f'\nArtifact CV : {cr * 2 + cd}'
 
         com = character.combat
 
-        stats = f'Max HP : {com.FIGHT_PROP_CUR_HP} \nAttack :{com.FIGHT_PROP_CUR_ATTACK} \nDef : {com.FIGHT_PROP_CUR_DEFENSE} \nEM : {com.FIGHT_PROP_ELEMENT_MASTERY}'
-        stats = stats + f'\nArtifact CV : {cr * 2 + cd}'
+        stats = f'Max HP : {com.FIGHT_PROP_CUR_HP} \nAttack :{com.FIGHT_PROP_CUR_ATTACK} \nDef : {com.FIGHT_PROP_CUR_DEFENSE} \nEM : {com.FIGHT_PROP_ELEMENT_MASTERY} \nArtifact ER% : {er}'
+        stats = stats + f'\nArtifact CR : {cr} \nArtifact CD : {cd}'
         for arti in character.artifacts: 
           
           artifactData.append(f"{arti.nameText}({statName(arti.main_stat.prop)} : {arti.main_stat.value})")
