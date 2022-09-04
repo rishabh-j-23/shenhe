@@ -18,7 +18,6 @@ class EnkaShinShin(commands.Cog):
     for i in range(len(name)):
 
         if name[i] == ' ':
-            print(i)
             caps = name[i+1].capitalize()
             name = name.replace(name[i+1], caps)
 
@@ -221,8 +220,6 @@ class EnkaShinShin(commands.Cog):
 
   @commands.command(brief = "Shows Player Details")
   async def player(self, ctx, id):
-
-    char = self.capitalize(char)
 
     if self.isInteger(id) == True:
       uid = id
