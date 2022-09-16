@@ -1,5 +1,45 @@
 class version_summary:
 
+  def v3_1(self):
+    summary = """
+Wish Event Banners:
+Phase One:
+-- Cyno (5 star, electro, polearm)
+-- Venti (5 star, anemo, bow)
+-- Candace (4 star, hydro, polearm)
+
+Phase Two:
+-- Nilou (5 Star, hydro, sword)
+-- Albedo (*5 Star, Geo, sword) 
+
+UPCOMING EVENTS
+-- Of Ballads And Brews 
+• Obtain New 4 Polearm : Missive Windspear
+• Plume of the changing winds
+• Obtain Rewards such as primogems, books, crowns, etc
+-- Wind Chaser 
+-- Star-seeker's sojourn
+-- Hyakunin ikki
+-- Path of Gleaming Jade (GENSHIN IMPACTS SECOND YEAR ANNIVERSARY)
+• Log In cummulatively for 10 intertwined fate and other rewards
+• Claim Via in-game mail:
+1,600 Primogems
+4 x Fragile Resin
+Jumpy Dumpty Party Popper
+Cloud Retainers Damasked Device
+ 
+NEW PvE/PvP PERMINANT Card Game (Genius Invokation TCG)
+Release of the first genshin impact sumeru OST Album
+
+
+STREAM CODES : 
+
+JT78YH7SGWRZ 
+3B6RYY7AHX9D
+2BP9HY6BYFR5
+"""
+    return summary
+
   def v3_0(self):
 
     summary = """

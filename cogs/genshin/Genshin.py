@@ -103,6 +103,11 @@ class Genshin(commands.Cog):
       title = "«« ━━━━━━ ✥ 3.0 Presentation Summary ✥ ━━━━━━━ »»"
       description = version_summary().v3_0()
       image = 'https://media.discordapp.net/attachments/943505502682382406/1008019595443048609/unknown.png'
+
+    elif (version == '3.1'):
+      title = "«« ━━━━━━ ✥ 3.1 Presentation Summary ✥ ━━━━━━━ »»"
+      description = version_summary().v3_1()
+      image = 'https://media.discordapp.net/attachments/836722052924833798/1020327516281503825/unknown.png?width=1227&height=603'
       
 
     embed = discord.Embed(title = title, description = description, color=0x06E5F5)

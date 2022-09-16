@@ -1,6 +1,6 @@
 import discord
 from discord.ext import tasks, commands
-import asyncio
+import asyncio, json
 import enkapy
 from enkapy import Enka
 from modules.mongo_genshin import MongoGenshin
