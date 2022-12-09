@@ -15,3 +15,7 @@ It has commands related to genshin such as:
 - discord.py
 - pymongo
 - youtube_dl
+
+## Database
+
+uses MongoDB to store uid and nickname of player to access genshin user data
