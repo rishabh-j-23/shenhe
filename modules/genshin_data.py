@@ -84,10 +84,9 @@ class genshin_character_data:
 *{charSkillsData[2]['description']}*
         """
 
-
-def getCharIcon(name):
+def getCharIcon(name: str):
         folder_dir = "res/images/genshin/character_icons/"
-        folder_dir = '/workspaces/shenhe/res/images/genshin/character_icons/'
+        # folder_dir = '/workspaces/shenhe/res/images/genshin/character_icons/'
         name = name.capitalize().replace(" ", "_")
         icon = []
         try:

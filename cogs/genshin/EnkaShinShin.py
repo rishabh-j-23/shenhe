@@ -3,7 +3,7 @@ from discord.ext import tasks, commands
 import asyncio, json
 import enkapy
 from enkapy import Enka
-from modules.mongo_genshin import MongoGenshin
+from modules.database.mongo_genshin import MongoGenshin
 
 
 client = Enka()

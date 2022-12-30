@@ -1,0 +1,3 @@
+2022-12-30 16:30:51,218:WARNING:discord.ext.commands.bot: Privileged message content intent is missing, commands may not work as expected.
+2022-12-30 16:30:51,219:INFO:discord.client: logging in using static token
+2022-12-30 16:30:53,089:INFO:discord.gateway: Shard ID None has connected to Gateway (Session ID: 54b2e72a1b66adedd21d8c5f6c85e9e3).
