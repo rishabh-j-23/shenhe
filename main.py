@@ -48,5 +48,4 @@ async def on_ready():
 #     embed = discord.Embed(title = error, description = "", color = color)
 #     await ctx.send(embed = embed)
 
-# bot.run(os.environ['TOKEN'])
-bot.run('OTc1MDAwNDI3NjU5NjkwMTE1.GpaZPl.oMqNeteYAcNfMHWrLZW45j-9GpwvVCSZBfiL1Q')
+bot.run(os.environ['TOKEN'])
