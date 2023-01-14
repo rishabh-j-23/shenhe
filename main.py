@@ -12,7 +12,6 @@ intents.message_content = True
 bot = commands.Bot(command_prefix="!!", intents=intents)
 cogs = [
     "cogs.genshin.Genshin", "cogs.miscellaneous.Miscellaneous",
-    "cogs.music.Music",
     "cogs.genshin.EnkaShinShin",
     "cogs.genshin.Artifacts",
     "cogs.changelogs", 
