@@ -1,8 +1,7 @@
-discord.py
+py-cord
 discord
 flask
 PyNaCl
-youtube_dl
 ffmpeg
 enka.py
 aiohttp
