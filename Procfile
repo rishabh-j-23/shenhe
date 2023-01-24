@@ -1,2 +1,2 @@
-web: pip install --upgrade -r requirements.txt
-web: python main.py
+worker: pip install --upgrade -r requirements.txt
+worker: python main.py
