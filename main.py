@@ -31,7 +31,7 @@ async def on_connect():
 async def on_ready():
     for cog in cogs:
         try:
-            bot.load_extension(cog)
+            await bot.load_extension(cog)
             print(cog + " Loaded")
 
         except Exception as e:

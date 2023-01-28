@@ -32,5 +32,5 @@ class Miscellaneous(commands.Cog):
         await ctx.send(random.choice(sides))
 
 
-def setup(bot):
-    bot.add_cog(Miscellaneous(bot))
+async def setup(bot):
+    await bot.add_cog(Miscellaneous(bot))

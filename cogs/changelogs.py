@@ -11,8 +11,8 @@ class changelogs(commands.Cog):
         embed = discord.Embed(title = 'Changelogs', description = description, color = 0x06E5F5)
         await ctx.send(embed = embed)
 
-def setup(bot):
-    bot.add_cog(changelogs(bot))
+async def setup(bot):
+    await bot.add_cog(changelogs(bot))
 
 """
 before genshin v3.0
