@@ -41,7 +41,7 @@ class Genshin(commands.Cog):
   async def jean(self, ctx):
     
     embed = discord.Embed(title = "Jean", description = builds.jean(), color=0x06E5F5)
-    embed.set_footer(text=ctx.author.display_name, icon_url=ctx.author.avatar_url)
+    embed.set_footer(text=ctx.author.display_name, icon_url=ctx.author.avatar.url)
     embed.set_thumbnail(url = "https://media.discordapp.net/attachments/943505502682382406/944237761563603054/jean.png")
     embed.set_image(url = "https://media.discordapp.net/attachments/943505502682382406/944230219609436170/unknown.png")
     
@@ -112,7 +112,7 @@ class Genshin(commands.Cog):
 
     embed = discord.Embed(title = title, description = description, color=0x06E5F5)
     embed.set_thumbnail(url = "https://media.discordapp.net/attachments/943505425742045267/992808669026721832/unknown.png?width=603&height=603")
-    embed.set_footer(text=ctx.author.display_name, icon_url=ctx.author.avatar_url)
+    embed.set_footer(text=ctx.author.display_name, icon_url=ctx.author.avatar.url)
     embed.set_image(url= image)
     await ctx.send(embed=embed)
 

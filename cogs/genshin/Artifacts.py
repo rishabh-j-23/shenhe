@@ -25,7 +25,7 @@ class Artifacts(commands.Cog):
         setBonus = f"""**2pc :** {bonus[0]['desc']}\n**4pc :** {bonus[1]['desc']}"""
         embed = discord.Embed(title=name, description=setBonus, color=0x06E5F5)
         embed.set_footer(text=ctx.author.display_name,
-                         icon_url=ctx.author.avatar_url)
+                         icon_url=ctx.author.avatar.url)
 
         await ctx.send(embed=embed)
 

@@ -38,7 +38,7 @@ class EnkaShinShin(commands.Cog):
 
     embed = discord.Embed(title = 'Successful Added', 
                           description = f'Successful added {user} {uid} \n*uids and username are not shared so rest assured while registering*', color = 0x06E5F5)
-    embed.set_thumbnail(url= ctx.author.avatar_url)
+    embed.set_thumbnail(url= ctx.author.avatar.url)
     embed.set_footer(text='used for !!enka and !!player commands currently')
     await ctx.send(embed = embed)
 
@@ -202,7 +202,7 @@ class EnkaShinShin(commands.Cog):
       circlet = circlet + '\n' + circletSubs[i]   
         
     embed = discord.Embed(title = f"{user.player.nickname} Wl{user.player.worldLevel} {uid}", description = des, color=0x06E5F5)
-    embed.set_footer(text=ctx.author.display_name, icon_url=ctx.author.avatar_url)
+    embed.set_footer(text=ctx.author.display_name, icon_url=ctx.author.avatar.url)
     embed.set_thumbnail(url = "https://media.discordapp.net/attachments/943505502682382406/992816537645887589/unknown.png")
     try:
        embed.add_field(name = 'Character Stats', value = stats)
@@ -255,8 +255,8 @@ class EnkaShinShin(commands.Cog):
     
     abyss = f'Floor {player.towerFloorIndex} Chamber {player.towerLevelIndex}'
     embed.add_field(name = "Abyss Progess :", value = abyss)
-    embed.set_footer(text=ctx.author.display_name, icon_url=ctx.author.avatar_url)
-    embed.set_thumbnail(url = ctx.author.avatar_url)
+    embed.set_footer(text=ctx.author.display_name, icon_url=ctx.author.avatar.url)
+    embed.set_thumbnail(url = ctx.author.avatar.url)
    
     await ctx.send(embed = embed)
 
