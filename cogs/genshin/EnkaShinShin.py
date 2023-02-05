@@ -11,17 +11,9 @@ mongoClient = MongoGenshin()
 class EnkaShinShin(commands.Cog):
 
   def capitalize(self, name: str):
-    name = name.capitalize()
-    if name.endswith(' ') == True:
-        name = name.removesuffix(" ")
-        
-    for i in range(len(name)):
-
-        if name[i] == ' ':
-            caps = name[i+1].capitalize()
-            name = name.replace(name[i+1], caps)
-
-    return name
+    words = name.split(" ")
+    capitalized_words = [word.capitalize() for word in words]
+    return " ".join(capitalized_words)
 
   def isInteger(self, s):
  

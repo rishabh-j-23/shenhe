@@ -11,7 +11,8 @@ intents.message_content = True
 
 bot = commands.Bot(command_prefix="!!", intents=intents)
 cogs = [
-    "cogs.genshin.Genshin", "cogs.miscellaneous.Miscellaneous",
+    "cogs.genshin.Genshin", 
+    "cogs.miscellaneous.Miscellaneous",
     "cogs.genshin.EnkaShinShin",
     "cogs.genshin.Artifacts",
     "cogs.changelogs", 
@@ -32,7 +33,7 @@ async def on_ready():
     for cog in cogs:
         try:
             await bot.load_extension(cog)
-            print(cog + " Loaded")
+            # print(cog + " Loaded")
 
         except Exception as e:
             print(e)
