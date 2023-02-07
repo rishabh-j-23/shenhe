@@ -40,9 +40,6 @@ class EnkaShinShin(commands.Cog):
     char = self.capitalize(char)
     
     cr, cd = 0, 0
-    
-    # if uid == 'ryxke':
-    #   uid = 712994834
 
     if self.isInteger(id) == True:
       uid = id
@@ -193,7 +190,7 @@ class EnkaShinShin(commands.Cog):
     for i in range(len(flowerSubs)):
       circlet = circlet + '\n' + circletSubs[i]   
         
-    embed = discord.Embed(title = f"{user.player.nickname} Wl{user.player.worldLevel} {uid}", description = des, color=0x06E5F5)
+    embed = discord.Embed(title = f"{user.player.Nickname} Wl{user.player.worldLevel} {uid}", description = des, color=0x06E5F5)
     embed.set_footer(text=ctx.author.display_name, icon_url=ctx.author.avatar.url)
     embed.set_thumbnail(url = "https://media.discordapp.net/attachments/943505502682382406/992816537645887589/unknown.png")
     try:

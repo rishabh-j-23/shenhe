@@ -1,4 +1,64 @@
-2023-02-05 10:58:56,504:INFO:discord.client: logging in using static token
-2023-02-05 10:58:59,522:INFO:discord.gateway: Shard ID None has connected to Gateway (Session ID: 09ee5cdabb403bc3c5a473ce9a5b1cfb).
-2023-02-05 10:59:42,823:ERROR:discord.ext.commands.bot: Ignoring exception in command None
-discord.ext.commands.errors.CommandNotFound: Command "enka" is not found
+2023-02-07 21:07:27,337:INFO:discord.client: logging in using static token
+2023-02-07 21:07:29,000:INFO:discord.gateway: Shard ID None has connected to Gateway (Session ID: 7007c6c73b32b92e6ab0d11716d7a6c0).
+2023-02-07 21:07:38,528:ERROR:discord.ext.commands.bot: Ignoring exception in command enka
+Traceback (most recent call last):
+  File "C:\Users\Rishabh\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\ext\commands\core.py", line 190, in wrapped
+    ret = await coro(*args, **kwargs)
+  File "D:\codes\shenhe\cogs\genshin\EnkaShinShin.py", line 90, in enka
+    await client.load_lang()
+  File "C:\Users\Rishabh\AppData\Local\Programs\Python\Python310\lib\site-packages\enkapy\client.py", line 120, in load_lang
+    cache_file_path = await self._process_cache(client,
+  File "C:\Users\Rishabh\AppData\Local\Programs\Python\Python310\lib\site-packages\enkapy\client.py", line 96, in _process_cache
+    cl = int(resp.headers['Content-Length'])
+KeyError: 'Content-Length'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Rishabh\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\ext\commands\bot.py", line 1347, in invoke
+    await ctx.command.invoke(ctx)
+  File "C:\Users\Rishabh\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\ext\commands\core.py", line 986, in invoke
+    await injected(*ctx.args, **ctx.kwargs)  # type: ignore
+  File "C:\Users\Rishabh\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\ext\commands\core.py", line 199, in wrapped
+    raise CommandInvokeError(exc) from exc
+discord.ext.commands.errors.CommandInvokeError: Command raised an exception: KeyError: 'Content-Length'
+2023-02-07 21:08:07,006:ERROR:discord.ext.commands.bot: Ignoring exception in command enka
+Traceback (most recent call last):
+  File "C:\Users\Rishabh\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\ext\commands\core.py", line 190, in wrapped
+    ret = await coro(*args, **kwargs)
+  File "D:\codes\shenhe\cogs\genshin\EnkaShinShin.py", line 88, in enka
+    uid = mongoClient.get_uid(id)
+NameError: name 'mongoClient' is not defined
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Rishabh\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\ext\commands\bot.py", line 1347, in invoke
+    await ctx.command.invoke(ctx)
+  File "C:\Users\Rishabh\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\ext\commands\core.py", line 986, in invoke
+    await injected(*ctx.args, **ctx.kwargs)  # type: ignore
+  File "C:\Users\Rishabh\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\ext\commands\core.py", line 199, in wrapped
+    raise CommandInvokeError(exc) from exc
+discord.ext.commands.errors.CommandInvokeError: Command raised an exception: NameError: name 'mongoClient' is not defined
+2023-02-07 21:08:26,848:ERROR:discord.ext.commands.bot: Ignoring exception in command enka
+Traceback (most recent call last):
+  File "C:\Users\Rishabh\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\ext\commands\core.py", line 190, in wrapped
+    ret = await coro(*args, **kwargs)
+  File "D:\codes\shenhe\cogs\genshin\EnkaShinShin.py", line 90, in enka
+    await client.load_lang()
+  File "C:\Users\Rishabh\AppData\Local\Programs\Python\Python310\lib\site-packages\enkapy\client.py", line 120, in load_lang
+    cache_file_path = await self._process_cache(client,
+  File "C:\Users\Rishabh\AppData\Local\Programs\Python\Python310\lib\site-packages\enkapy\client.py", line 96, in _process_cache
+    cl = int(resp.headers['Content-Length'])
+KeyError: 'Content-Length'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Rishabh\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\ext\commands\bot.py", line 1347, in invoke
+    await ctx.command.invoke(ctx)
+  File "C:\Users\Rishabh\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\ext\commands\core.py", line 986, in invoke
+    await injected(*ctx.args, **ctx.kwargs)  # type: ignore
+  File "C:\Users\Rishabh\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\ext\commands\core.py", line 199, in wrapped
+    raise CommandInvokeError(exc) from exc
+discord.ext.commands.errors.CommandInvokeError: Command raised an exception: KeyError: 'Content-Length'
