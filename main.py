@@ -21,11 +21,11 @@ cogs = [
 
 color = 0x06E5F5
 
-#SET PRESENSE AND ACTIVITY
-# @bot.event
-# async def on_connect():
-#     await bot.change_presence(activity=discord.Activity(
-#         type=discord.ActivityType.listening, name="Ryxke"))
+# SET PRESENSE AND ACTIVITY
+@bot.event
+async def on_connect():
+    await bot.change_presence(activity=discord.Activity(
+        type=discord.ActivityType.listening, name="Ryxke"))
 
 
 @bot.event
