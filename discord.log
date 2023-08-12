@@ -1,2 +1,4 @@
-2023-08-12 09:02:47,750:INFO:discord.client: logging in using static token
-2023-08-12 09:02:50,408:INFO:discord.gateway: Shard ID None has connected to Gateway (Session ID: 8265487cf20db687a761abd4188639fe).
+2023-08-12 09:54:39,673:WARNING:discord.client: PyNaCl is not installed, voice will NOT be supported
+2023-08-12 09:54:39,675:WARNING:discord.ext.commands.bot: Privileged message content intent is missing, commands may not work as expected.
+2023-08-12 09:54:39,675:INFO:discord.client: logging in using static token
+2023-08-12 09:54:41,382:INFO:discord.gateway: Shard ID None has connected to Gateway (Session ID: 2856f076bb71f74807b544af872d4b87).
