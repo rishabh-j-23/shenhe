@@ -1,5 +1,6 @@
 py-cord
-discord
+discord==2.0.0
+discord.py==2.0.1
 flask
 PyNaCl
 ffmpeg
