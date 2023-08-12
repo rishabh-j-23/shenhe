@@ -3,7 +3,7 @@ discord
 flask
 PyNaCl
 ffmpeg
-enka.py==1.0.10
+enka.py==1.1.4
 aiohttp
 asyncio
 msgpack

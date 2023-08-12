@@ -1,6 +1,7 @@
 import discord
 from discord.ext import tasks, commands
-import asyncio, json
+import asyncio
+import json
 import enkapy
 from enkapy import Enka
 from modules.database.mongo_genshin import MongoGenshin
@@ -8,271 +9,285 @@ from modules.database.mongo_genshin import MongoGenshin
 
 client = Enka()
 mongoClient = MongoGenshin()
+
+
 class EnkaShinShin(commands.Cog):
 
-  def capitalize(self, name: str):
-    words = name.split(" ")
-    capitalized_words = [word.capitalize() for word in words]
-    return " ".join(capitalized_words)
+    def capitalize(self, name: str):
+        words = name.split(" ")
+        capitalized_words = [word.capitalize() for word in words]
+        return " ".join(capitalized_words)
 
-  def isInteger(self, s):
- 
-    for i in range(len(s)):
-        if s[i].isdigit() != True:
-            return False
- 
-    return True
+    def isInteger(self, s):
 
-  @commands.command()
-  async def register(self, ctx, user: str, uid: int):
+        for i in range(len(s)):
+            if s[i].isdigit() != True:
+                return False
 
-    mongoClient.add(user, uid)
+        return True
 
-    embed = discord.Embed(title = 'Successful Added', 
-                          description = f'Successful added {user} {uid} \n*uids and username are not shared so rest assured while registering*', color = 0x06E5F5)
-    embed.set_thumbnail(url= ctx.author.avatar.url)
-    embed.set_footer(text='used for !!enka and !!player commands currently')
-    await ctx.send(embed = embed)
+    @commands.command()
+    async def register(self, ctx, user: str, uid: int):
 
-  @commands.command(brief = 'Shows Artifact Crit Value', aliases = ['articv', 'acv'])
-  async def artifactcv(self, ctx, id, *, char):
+        mongoClient.add(user, uid)
 
-    char = self.capitalize(char)
-    
-    cr, cd = 0, 0
+        embed = discord.Embed(title='Successful Added',
+                              description=f'Successful added {user} {uid} \n*uids and username are not shared so rest assured while registering*', color=0x06E5F5)
+        embed.set_thumbnail(url=ctx.author.avatar.url)
+        embed.set_footer(
+            text='used for !!enka and !!player commands currently')
+        await ctx.send(embed=embed)
 
-    if self.isInteger(id) == True:
-      uid = id
-    else:
-      id = str(id)
-      uid = mongoClient.get_uid(id)
-  
-    await client.load_lang()
-    try:
-      user = await client.fetch_user(uid)
-    except:
-      await ctx.send("Please recheck the UID or Turn on Character Details in game")
-      return
+    @commands.command(brief='Shows Artifact Crit Value', aliases=['articv', 'acv'])
+    async def artifactcv(self, ctx, id, *, char):
 
-    for character in user.characters:
-      if str(character.name) == char:
-        for arti in character.artifacts:
-          if str(arti.main_stat.prop) == "FIGHT_PROP_CRITICAL":
-            cr = cr + arti.main_stat.value
-          elif str(arti.main_stat.prop) == 'FIGHT_PROP_CRITICAL_HURT':
-            cd = cd + arti.main_stat.value
+        char = self.capitalize(char)
 
-          for subs in arti.sub_stats:
-            if str(subs.prop) == "FIGHT_PROP_CRITICAL":
-              cr = cr + subs.value
-            elif str(subs.prop) == 'FIGHT_PROP_CRITICAL_HURT':
-              cd = cd + subs.value
+        cr, cd = 0, 0
 
-    cv = cd + cr*2
+        if self.isInteger(id) == True:
+            uid = id
+        else:
+            id = str(id)
+            uid = mongoClient.get_uid(id)
 
-    embed = discord.Embed(title = f'Artifact CV for {char}', description = f'CV : {cv}',
-                          color = 0x06E5F5)
-    await ctx.send(embed = embed)
+        await client.load_lang()
+        try:
+            user = await client.fetch_user(uid)
+        except:
+            await ctx.send("Please recheck the UID or Turn on Character Details in game")
+            return
 
-      
-  @commands.command(brief = "Character Details")
-  async def enka(self, ctx, id, *, char):
+        for character in user.characters:
+            if str(character.name) == char:
+                for arti in character.artifacts:
+                    if str(arti.main_stat.prop) == "FIGHT_PROP_CRITICAL":
+                        cr = cr + arti.main_stat.value
+                    elif str(arti.main_stat.prop) == 'FIGHT_PROP_CRITICAL_HURT':
+                        cd = cd + arti.main_stat.value
 
-    char = self.capitalize(char)
+                    for subs in arti.sub_stats:
+                        if str(subs.prop) == "FIGHT_PROP_CRITICAL":
+                            cr = cr + subs.value
+                        elif str(subs.prop) == 'FIGHT_PROP_CRITICAL_HURT':
+                            cd = cd + subs.value
 
-    cr, cd = 0, 0
-    if self.isInteger(id) == True:
-      uid = id
-    else:
-      id = str(id)
-      uid = mongoClient.get_uid(id)
-    
-    await client.load_lang()
-    try:
-      user = await client.fetch_user(uid)
-    except:
-      await ctx.send("Please recheck the UID or Turn on Character Details in game")
-      return
+        cv = cd + cr*2
 
-    des = ""
-    artifactData = []
-    artiSubsData = []
-    er = 0
-    flowerSubs, featherSubs, sandsSubs, gobletSubs, circletSubs = [],[],[],[],[]
+        embed = discord.Embed(title=f'Artifact CV for {char}', description=f'CV : {cv}',
+                              color=0x06E5F5)
+        await ctx.send(embed=embed)
 
-    for character in user.characters:
-      if str(character.name) == char:
-        for arti in character.artifacts:
-          if str(arti.main_stat.prop) == "FIGHT_PROP_CRITICAL":
-            cr = cr + arti.main_stat.value
-          elif str(arti.main_stat.prop) == 'FIGHT_PROP_CRITICAL_HURT':
-            cd = cd + arti.main_stat.value
-          
-          if str(arti.main_stat.prop) == 'FIGHT_PROP_CHARGE_EFFICIENCY':
-            er = er + arti.main_stat.value
+    @commands.command(brief="Character Details")
+    async def enka(self, ctx, id, *, char):
 
-          for subs in arti.sub_stats:
-            if str(subs.prop) == "FIGHT_PROP_CRITICAL":
-              cr = cr + subs.value
-            elif str(subs.prop) == 'FIGHT_PROP_CRITICAL_HURT':
-              cd = cd + subs.value
-            
-            if str(subs.prop) == 'FIGHT_PROP_CHARGE_EFFICIENCY':
-              er = er + subs.value
+        char = self.capitalize(char)
 
-    print(er)
-    for character in user.characters:
-      if str(character.name) == str(char):
+        cr, cd = 0, 0
+        if self.isInteger(id) == True:
+            uid = id
+        else:
+            id = str(id)
+            uid = mongoClient.get_uid(id)
 
-        levels = []
-        for i in character.skill_level.values():
-         levels.append(i)
+        await client.load_lang()
+        try:
+            user = await client.fetch_user(uid)
+        except:
+            await ctx.send("Please recheck the UID or Turn on Character Details in game")
+            return
 
-        cons = 0
-        for constellation in character.constellations:
-          if constellation.activated:
-            cons = cons + 1
+        des = ""
+        artifactData = []
+        artiSubsData = []
+        er = 0
+        flowerSubs, featherSubs, sandsSubs, gobletSubs, circletSubs = [], [], [], [], []
 
-        des = f"Lvl{character.level} C{cons} {character.name} \n**Friendship :** {character.friendship.level} \n**Weapon** : R{character.weapon.refine + 1} {character.weapon.nameText} (Lvl{character.weapon.level})"
-        des = des + f'\n**Talents :**  {levels[0]}/{levels[1]}/{levels[2]}'
-        des = des + f'\nArtifact CV : {cr * 2 + cd}'
+        for character in user.characters:
+            if str(character.name) == char:
+                for arti in character.artifacts:
+                    if str(arti.main_stat.prop) == "FIGHT_PROP_CRITICAL":
+                        cr = cr + arti.main_stat.value
+                    elif str(arti.main_stat.prop) == 'FIGHT_PROP_CRITICAL_HURT':
+                        cd = cd + arti.main_stat.value
 
-        com = character.combat
+                    if str(arti.main_stat.prop) == 'FIGHT_PROP_CHARGE_EFFICIENCY':
+                        er = er + arti.main_stat.value
 
-        stats = f'Max HP : {com.FIGHT_PROP_CUR_HP} \nAttack :{com.FIGHT_PROP_CUR_ATTACK} \nDef : {com.FIGHT_PROP_CUR_DEFENSE} \nEM : {com.FIGHT_PROP_ELEMENT_MASTERY} \nArtifact ER% : {er}'
-        stats = stats + f'\nArtifact CR : {cr} \nArtifact CD : {cd}'
-        for arti in character.artifacts: 
-          
-          artifactData.append(f"{arti.nameText}({statName(arti.main_stat.prop)} : {arti.main_stat.value})")
-          
-          for subs in arti.sub_stats:
-            f"subs.prop : subs.value"
-            artiSubsData.append(f"{statName(subs.prop)} : {subs.value}")
+                    for subs in arti.sub_stats:
+                        if str(subs.prop) == "FIGHT_PROP_CRITICAL":
+                            cr = cr + subs.value
+                        elif str(subs.prop) == 'FIGHT_PROP_CRITICAL_HURT':
+                            cd = cd + subs.value
 
-            if len(artiSubsData) > 0 and  len(artiSubsData) <= 4:
-                flowerSubs.append(f"{statName(subs.prop)} : {subs.value}")
+                        if str(subs.prop) == 'FIGHT_PROP_CHARGE_EFFICIENCY':
+                            er = er + subs.value
 
-            elif len(artiSubsData) > 4 and len(artiSubsData) <= 8:
-                featherSubs.append(f"{statName(subs.prop)} : {subs.value}")
-                
-            elif len(artiSubsData) > 8 and len(artiSubsData) <= 12:
-                sandsSubs.append(f"{statName(subs.prop)} : {subs.value}")
-                
-            elif len(artiSubsData) > 12 and len(artiSubsData) <= 16:
-                gobletSubs.append(f"{statName(subs.prop)} : {subs.value}")
-                
-            elif len(artiSubsData) > 16 and len(artiSubsData) <= 20:
-                circletSubs.append(f"{statName(subs.prop)} : {subs.value}")
+        for character in user.characters:
+            if str(character.name) == str(char):
 
-    embedDataMainProp = ""
-    for i in range(len(artifactData)):
-      artiData = f"{artifactData[i]}"
-      embedDataMainProp = embedDataMainProp + "\n" + artiData
+                levels = []
+                for i in character.skill_level.values():
+                    levels.append(i)
 
-    embedDataSubProp = ''
-    for i in range(len(artiSubsData)):
-      subsData = f"{artiSubsData[i]}"
-      embedDataSubProp = embedDataSubProp + '\n' + subsData
+                cons = 0
+                for constellation in character.constellations:
+                    if constellation.activated:
+                        cons = cons + 1
 
-    flower = ''
-    for i in range(len(flowerSubs)):
-      flower = flower + '\n' + flowerSubs[i]
-    feather = ''
-    for i in range(len(flowerSubs)):
-      feather = feather + '\n' + featherSubs[i]
-    sands = ''
-    for i in range(len(flowerSubs)):
-      sands = sands + '\n' + sandsSubs[i]
-    goblet = ''
-    for i in range(len(flowerSubs)):
-      goblet = goblet + '\n' + gobletSubs[i]
-    circlet = ''
-    for i in range(len(flowerSubs)):
-      circlet = circlet + '\n' + circletSubs[i]   
-        
-    embed = discord.Embed(title = f"{user.player.Nickname} Wl{user.player.worldLevel} {uid}", description = des, color=0x06E5F5)
-    embed.set_footer(text=ctx.author.display_name, icon_url=ctx.author.avatar.url)
-    embed.set_thumbnail(url = "https://media.discordapp.net/attachments/943505502682382406/992816537645887589/unknown.png")
-    try:
-       embed.add_field(name = 'Character Stats', value = stats)
-       embed.add_field(name = artifactData[0], value = flower)
-       embed.add_field(name = artifactData[1], value = feather)
-       embed.add_field(name = artifactData[2], value = sands)
-       embed.add_field(name = artifactData[3], value = goblet)
-       embed.add_field(name = artifactData[4], value = circlet)
-    except:
-      await ctx.send('Error while getting data for specified character \nPossible reasons \n-Character dont have artifact \n-UID is not available')
-      return
+                des = f"Lvl{character.level} C{cons} {character.name} \n**Friendship :** {character.friendship.level} \n**Weapon** : R{character.weapon.refine + 1} {character.weapon.nameText} (Lvl{character.weapon.level})"
+                des = des + \
+                    f'\n**Talents :**  {levels[0]}/{levels[1]}/{levels[2]}'
+                des = des + f'\nArtifact CV : {cr * 2 + cd}'
 
-    await ctx.send(embed = embed)
-    
+                com = character.combat
 
-  @commands.command(brief = "Shows Player Details")
-  async def player(self, ctx, id):
+                stats = f'Max HP : {com.FIGHT_PROP_CUR_HP} \nAttack :{com.FIGHT_PROP_CUR_ATTACK} \nDef : {com.FIGHT_PROP_CUR_DEFENSE} \nEM : {com.FIGHT_PROP_ELEMENT_MASTERY} \nArtifact ER% : {er}'
+                stats = stats + f'\nArtifact CR : {cr} \nArtifact CD : {cd}'
+                for arti in character.artifacts:
 
-    if self.isInteger(id) == True:
-      uid = id
-    else:
-      id = str(id)
-      uid = mongoClient.get_uid(id)
-      
-    await client.load_lang()
-    try:
-      user = await client.fetch_user(uid)
-    except:
-      await ctx.send("Couldn't find that player")
-      return
-      
-    player = user.player
+                    artifactData.append(
+                        f"{arti.nameText}({statName(arti.main_stat.prop)} : {arti.main_stat.value})")
 
-    embed = discord.Embed(title = "Player Showcase : ",
-                         color = 0x06E5F5)
-    details = f"**Nickname :** {player.nickname} \n**Adventure Rank :** {player.level} \n**World level :** {player.worldLevel} \n**Signature :** *{player.signature}* \n**Achievements :** {player.finishAchievementNum}"
-    
-    embed.add_field(name = "Player details : ",
-                   value = details)
-    
-    charData = []
-    for char in user.characters:
-      charData.append(f'{char.name}')
+                    for subs in arti.sub_stats:
+                        f"subs.prop : subs.value"
+                        artiSubsData.append(
+                            f"{statName(subs.prop)} : {subs.value}")
 
-    data = f""
-    for i in range(len(charData)):
-      data = data + '\n' +  f'{charData[i]} (lvl{player.showAvatarInfoList[i].level})'
-      
-    embed.add_field(name = "Characters :", value = data)
-    
-    abyss = f'Floor {player.towerFloorIndex} Chamber {player.towerLevelIndex}'
-    embed.add_field(name = "Abyss Progess :", value = abyss)
-    embed.set_footer(text=ctx.author.display_name, icon_url=ctx.author.avatar.url)
-    embed.set_thumbnail(url = ctx.author.avatar.url)
-   
-    await ctx.send(embed = embed)
+                        if len(artiSubsData) > 0 and len(artiSubsData) <= 4:
+                            flowerSubs.append(
+                                f"{statName(subs.prop)} : {subs.value}")
 
-           
+                        elif len(artiSubsData) > 4 and len(artiSubsData) <= 8:
+                            featherSubs.append(
+                                f"{statName(subs.prop)} : {subs.value}")
+
+                        elif len(artiSubsData) > 8 and len(artiSubsData) <= 12:
+                            sandsSubs.append(
+                                f"{statName(subs.prop)} : {subs.value}")
+
+                        elif len(artiSubsData) > 12 and len(artiSubsData) <= 16:
+                            gobletSubs.append(
+                                f"{statName(subs.prop)} : {subs.value}")
+
+                        elif len(artiSubsData) > 16 and len(artiSubsData) <= 20:
+                            circletSubs.append(
+                                f"{statName(subs.prop)} : {subs.value}")
+
+        embedDataMainProp = ""
+        for i in range(len(artifactData)):
+            artiData = f"{artifactData[i]}"
+            embedDataMainProp = embedDataMainProp + "\n" + artiData
+
+        embedDataSubProp = ''
+        for i in range(len(artiSubsData)):
+            subsData = f"{artiSubsData[i]}"
+            embedDataSubProp = embedDataSubProp + '\n' + subsData
+
+        flower = ''
+        for i in range(len(flowerSubs)):
+            flower = flower + '\n' + flowerSubs[i]
+        feather = ''
+        for i in range(len(flowerSubs)):
+            feather = feather + '\n' + featherSubs[i]
+        sands = ''
+        for i in range(len(flowerSubs)):
+            sands = sands + '\n' + sandsSubs[i]
+        goblet = ''
+        for i in range(len(flowerSubs)):
+            goblet = goblet + '\n' + gobletSubs[i]
+        circlet = ''
+        for i in range(len(flowerSubs)):
+            circlet = circlet + '\n' + circletSubs[i]
+
+        embed = discord.Embed(
+            title=f"{user.player.nickname} Wl{user.player.worldLevel} {uid}", description=des, color=0x06E5F5)
+        embed.set_footer(text=ctx.author.display_name,
+                         icon_url=ctx.author.avatar.url)
+        embed.set_thumbnail(
+            url="https://media.discordapp.net/attachments/943505502682382406/992816537645887589/unknown.png")
+        try:
+            embed.add_field(name='Character Stats', value=stats)
+            embed.add_field(name=artifactData[0], value=flower)
+            embed.add_field(name=artifactData[1], value=feather)
+            embed.add_field(name=artifactData[2], value=sands)
+            embed.add_field(name=artifactData[3], value=goblet)
+            embed.add_field(name=artifactData[4], value=circlet)
+        except:
+            await ctx.send('Error while getting data for specified character')
+            return
+
+        await ctx.send(embed=embed)
+
+    @commands.command(brief="Shows Player Details")
+    async def player(self, ctx, id):
+
+        if self.isInteger(id) == True:
+            uid = id
+        else:
+            id = str(id)
+            uid = mongoClient.get_uid(id)
+
+        await client.load_lang()
+        try:
+            user = await client.fetch_user(uid)
+        except:
+            await ctx.send("Couldn't find that player")
+            return
+
+        player = user.player
+
+        embed = discord.Embed(title="Player Showcase : ",
+                              color=0x06E5F5)
+        details = f"**Nickname :** {player.nickname} \n**Adventure Rank :** {player.level} \n**World level :** {player.worldLevel} \n**Signature :** *{player.signature}* \n**Achievements :** {player.finishAchievementNum}"
+
+        embed.add_field(name="Player details : ",
+                        value=details)
+
+        charData = []
+        for char in user.characters:
+            charData.append(f'{char.name}')
+
+        data = f""
+        for i in range(len(charData)):
+            data = data + '\n' + \
+                f'{charData[i]} (lvl{player.showAvatarInfoList[i].level})'
+
+        embed.add_field(name="Characters :", value=data)
+
+        abyss = f'Floor {player.towerFloorIndex} Chamber {player.towerLevelIndex}'
+        embed.add_field(name="Abyss Progess :", value=abyss)
+        embed.set_footer(text=ctx.author.display_name,
+                         icon_url=ctx.author.avatar.url)
+        embed.set_thumbnail(url=ctx.author.avatar.url)
+
+        await ctx.send(embed=embed)
+
+
 async def setup(bot):
-  await bot.add_cog(EnkaShinShin(bot))
+    await bot.add_cog(EnkaShinShin(bot))
+
 
 def statName(propname):
 
     stats = {
-      "FIGHT_PROP_CRITICAL" : "CR%",
-      "FIGHT_PROP_CRITICAL_HURT" : "CD%",
-      "FIGHT_PROP_ATTACK_PERCENT" : "Atk%",
-      "FIGHT_PROP_DEFENSE_PERCENT" : "Def%",
-      "FIGHT_PROP_HP_PERCENT" : "HP%",
-      "FIGHT_PROP_CHARGE_EFFICIENCY" : "ER%",
-      "FIGHT_PROP_ATTACK" : "Atk",
-      "FIGHT_PROP_DEFENSE" : "Def",
-      "FIGHT_PROP_HP" : "HP",
-      "FIGHT_PROP_ELEMENT_MASTERY" : "EM",
-      "FIGHT_PROP_WIND_ADD_HURT" : "Anemo Dmg%",
-      "FIGHT_PROP_FIRE_ADD_HURT" : "Pyro Dmg%",
-      "FIGHT_PROP_WATER_ADD_HURT" : "Hydro Dmg%",
-      "FIGHT_PROP_ELEC_ADD_HURT" : "Electro Dmg%",
-      "FIGHT_PROP_ICE_ADD_HURT" : "Cryo Dmg%",
-      "FIGHT_PROP_PHYSICAL_ADD_HURT" : "Physical Dmg%",
-      "FIGHT_PROP_ROCK_ADD_HURT" : "Geo Dmg%"      
+        "FIGHT_PROP_CRITICAL": "CR%",
+        "FIGHT_PROP_CRITICAL_HURT": "CD%",
+        "FIGHT_PROP_ATTACK_PERCENT": "Atk%",
+        "FIGHT_PROP_DEFENSE_PERCENT": "Def%",
+        "FIGHT_PROP_HP_PERCENT": "HP%",
+        "FIGHT_PROP_CHARGE_EFFICIENCY": "ER%",
+        "FIGHT_PROP_ATTACK": "Atk",
+        "FIGHT_PROP_DEFENSE": "Def",
+        "FIGHT_PROP_HP": "HP",
+        "FIGHT_PROP_ELEMENT_MASTERY": "EM",
+        "FIGHT_PROP_WIND_ADD_HURT": "Anemo Dmg%",
+        "FIGHT_PROP_FIRE_ADD_HURT": "Pyro Dmg%",
+        "FIGHT_PROP_WATER_ADD_HURT": "Hydro Dmg%",
+        "FIGHT_PROP_ELEC_ADD_HURT": "Electro Dmg%",
+        "FIGHT_PROP_ICE_ADD_HURT": "Cryo Dmg%",
+        "FIGHT_PROP_PHYSICAL_ADD_HURT": "Physical Dmg%",
+        "FIGHT_PROP_ROCK_ADD_HURT": "Geo Dmg%"
     }
 
     return stats.get(propname)
