@@ -1,13 +1,6 @@
-py-cord
-discord==2.0.0
-discord.py==2.0.1
-flask
-PyNaCl
-ffmpeg
+py-cord==2.4
 enka.py==1.1.4
-aiohttp
 asyncio
-msgpack
 ujson
 pymongo
 pymongo[srv]
