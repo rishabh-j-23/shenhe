@@ -1,4 +1,4 @@
-py-cord==2.4
+py-cord==2.4.1
 enka.py==1.1.4
 asyncio
 ujson
