@@ -18,6 +18,6 @@ pydantic_core==2.4.0
 pymongo==4.4.1
 requests==2.31.0
 typing_extensions==4.7.1
-ujson==5.8.0
+ujson==5.7.0
 urllib3==2.0.4
 yarl==1.9.2
