@@ -2,7 +2,7 @@ import pymongo
 import os
 
 
-client = pymongo.MongoClient(f"mongodb+srv://ryxke:{os.environ['MONGO_PASS']}@shenhedb.tqeaoxl.mongodb.net/?retryWrites=true&w=majority")
+client = pymongo.MongoClient(f"mongodb+srv://ryxke:ryxke@shenhedb.tqeaoxl.mongodb.net/?retryWrites=true&w=majority")
 db = client['shenheDB']
 uid_col = db['uids']
 
